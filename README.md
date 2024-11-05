@@ -1,66 +1,60 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Image Upload Task Instructions
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This task involves building a simple Laravel feature for image uploading. You will complete the controller, database, and model setup. Your goal is to store uploaded images, save their information to a database, and display them in the provided Blade file.
 
-## About Laravel
+## Task Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **Controller**:  
+   Create a controller to handle the image upload process, saving image details to the database and fetching images for display.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. **Database**:
+    - Set up a database table to store image details.
+    - Each image entry should include:
+        - `id` (auto-incremented primary key)
+        - `filepath` (string)
+3. **Model**:  
+   Create a model to interact with the database table.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+4. **Functionality**:
+    - When an image is uploaded, save it to the `/public/images` directory.
+    - Store the image filepath.
+    - Fetch and display all uploaded images in the provided Blade file using the table format.
 
-## Learning Laravel
+## Steps
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. Database Setup
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **Migration**: Create a migration for an `images` table with columns for `id`, `filepath`.
+    -   Run the migration to create the table in your database.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Model Creation
 
-## Laravel Sponsors
+-   Create a model (e.g., `Image`) linked to the `images` table.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3. Controller Setup
 
-### Premium Partners
+-   Create a controller (e.g., `ImageController`) to handle:
+    -   **Image Upload**: Process the uploaded file, move it to `/public/images`, and save the file information in the database.
+    -   **Display Images**: Fetch all image entries from the database and pass them to the Blade view for display.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 5. Testing
 
-## Contributing
+-   Verify that the upload and display functionality works as expected.
+-   Check that images are saved to `/public/images` and that all uploaded images appear in the table with their file name
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Example Workflow
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Upload Image**:
+    - Go to the upload page.
+    - Select an image and submit.
+2. **Display Uploaded Images**:
+    - After upload, the image details should appear in the table on the page.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Additional Notes
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-   **File Upload Validation**: Add basic validation in the controller for the file type (e.g., `jpeg`, `png`) and size (max 2MB).
+-   **Image Path**: Ensure images are correctly displayed by using the `asset()` helper function in the Blade file to generate the image path.
