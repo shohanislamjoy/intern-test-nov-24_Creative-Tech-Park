@@ -13,8 +13,23 @@
     <div class="container mt-5">
         <h2 class="text-center mb-4">Upload an Image</h2>
 
+        <!-- Success Message -->
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Error Message -->
+        @if($errors->any())
+            <div class="alert alert-danger">
+                {{ $errors->first() }}
+            </div>
+        @endif
+
         <!-- Image Upload Form -->
-        <form action="" method="POST" enctype="multipart/form-data" class="mb-5">
+        <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data" class="mb-5">
+            @csrf
             <div class="row g-2 align-items-center">
                 <div class="col-md-10">
                     <input type="file" name="image" class="form-control" required>
@@ -24,8 +39,9 @@
                 </div>
             </div>
         </form>
+
         <!-- Uploaded Images Table -->
-        <h3 class="text-center">Uploaded Images Will Be Shown Here</h3>
+        <h3 class="text-center">Uploaded Images</h3>
         <table class="table table-bordered table-striped mt-3">
             <thead class="table-primary">
                 <tr>
@@ -34,16 +50,19 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Example row; replace with dynamic data -->
-                <tr>
-                    <th scope="row">1</th>
-                    <td><img src="https://picsum.photos/200" alt="Image" class="img-thumbnail" width="100"></td>
-                </tr>
+                @foreach($images as $image)
+                    <tr>
+                        <th scope="row">{{ $image->id }}</th>
+                        <td>
+                            <img src="{{ asset('storage/' . $image->filepath) }}" alt="Image" class="img-thumbnail" width="200">
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 
-    <!-- Bootstrap 5 JS CDN (for any JavaScript functionality, e.g., modals) -->
+    <!-- Bootstrap 5 JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
