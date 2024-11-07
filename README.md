@@ -1,3 +1,11 @@
+#Screenshot of Finish task
+
+![image](https://github.com/user-attachments/assets/36f50312-9b3b-4d14-bcd1-f38c1a7bd1f2)
+
+
+
+
+
 # Image Upload Task Instructions
 
 This task involves building a simple Laravel feature for image uploading. You will complete the controller, database, and model setup. Your goal is to store uploaded images, save their information to a database, and display them in the provided Blade file.
